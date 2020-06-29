@@ -1,0 +1,11 @@
+{
+	"files.exclude": {
+		"C:/Users/JEEVI/Documents/Unreal Projects/Tool_Tanks/.git": true,
+		"C:/Users/JEEVI/Documents/Unreal Projects/Tool_Tanks/.vs": true,
+		"C:/Users/JEEVI/Documents/Unreal Projects/Tool_Tanks/.vscode": true,
+		"C:/Users/JEEVI/Documents/Unreal Projects/Tool_Tanks/Content": true,
+		"C:/Users/JEEVI/Documents/Unreal Projects/Tool_Tanks/DerivedDataCache": true,
+		"C:/Users/JEEVI/Documents/Unreal Projects/Tool_Tanks/Intermediate": true,
+		"C:/Users/JEEVI/Documents/Unreal Projects/Tool_Tanks/Saved": true
+	}
+}
