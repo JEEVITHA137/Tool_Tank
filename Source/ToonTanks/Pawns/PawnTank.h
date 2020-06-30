@@ -25,10 +25,8 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent *PlayerInputComponent) override;
 
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
 private:
+
     UPROPERTY(VisibleAnywhere,BlueprintReadOnly,Category="Components",meta=(AllowPrivateAccess = "true"))
     USpringArmComponent* SpringArm;
     UPROPERTY(VisibleAnywhere,BlueprintReadOnly,Category="Components",meta=(AllowPrivateAccess = "true"))
@@ -42,6 +40,9 @@ private:
 	FVector MoveDirection;
 	FQuat RotationDirection;
 
+	APlayerController* PlayerControllerRef;
+	FHitResult TraceHitResult;
+
 	void CalculateMoveInput(float Value);
 	void CalculateRotateInput(float Value);
 
@@ -49,4 +50,9 @@ private:
 	void Rotate();
 
 protected:
+
+	virtual void BeginPlay() override;
+
+	virtual void HandleDestruction() ;
+
 };

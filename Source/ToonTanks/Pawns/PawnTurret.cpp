@@ -48,3 +48,9 @@ float APawnTurret::ReturnDistanceToPlayer()
     
     return Distance;
 }
+
+void APawnTurret::HandleDestruction()
+{
+    Super::HandleDestruction();
+    Destroy();
+}

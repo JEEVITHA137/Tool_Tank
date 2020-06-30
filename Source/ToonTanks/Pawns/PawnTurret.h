@@ -18,8 +18,6 @@ class TOONTANKS_API APawnTurret : public APawnBase
 public:
 	virtual void Tick(float DeltaTime) override;
 
-	virtual void BeginPlay() override;
-
 private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement", meta = (AllowPrivateAccess = "true"))
 	float FireRate = 2.0f;
@@ -35,5 +33,9 @@ private:
 	float ReturnDistanceToPlayer();
 
 protected:
+
+	virtual void BeginPlay() override;
+
+	virtual void HandleDestruction();
 
 };
