@@ -3,15 +3,15 @@
 
 #include "TankGameModeBase.h"
 
-void ATankGameModeBase::ActorDied(AActor *DeadActor)
-{
-
-}
-
 void ATankGameModeBase::BeginPlay()
 {
 
 }
+void ATankGameModeBase::ActorDied(AActor *DeadActor)
+{
+    UE_LOG(LogTemp, Warning, TEXT("An Actor Died"));
+}
+
 
 void ATankGameModeBase::HandleGameStart()
 {
