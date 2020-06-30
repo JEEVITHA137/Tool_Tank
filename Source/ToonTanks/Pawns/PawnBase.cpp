@@ -3,7 +3,7 @@
 
 #include "PawnBase.h"
 #include "Components/CapsuleComponent.h"
-
+#include "Kismet/KismetMathLibrary.h"
 // Sets default values
 APawnBase::APawnBase()
 {
@@ -25,12 +25,16 @@ APawnBase::APawnBase()
 
 void APawnBase::RotateTurret(FVector LookAtTarget)
 {
+    FVector StartLocation = TurretMesh->GetComponentLocation();
+	FRotator TurretRotation = UKismetMathLibrary::FindLookAtRotation(StartLocation, FVector(LookAtTarget.X, LookAtTarget.Y, TurretMesh->GetComponentLocation().Z));
 
+	// Rotate Turret.
+	TurretMesh->SetWorldRotation(TurretRotation);
 }
 
 void APawnBase::Fire()
 {
-
+	UE_LOG(LogTemp, Warning, TEXT("FIRE!!"));
 }
 
 void APawnBase::HandleDestruction()
