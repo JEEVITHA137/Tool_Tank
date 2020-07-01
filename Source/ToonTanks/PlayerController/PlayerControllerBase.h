@@ -13,5 +13,6 @@ UCLASS()
 class TOONTANKS_API APlayerControllerBase : public APlayerController
 {
 	GENERATED_BODY()
-	
+public:
+	void SetPlayerEnabled(bool SetPlayerEnabled);
 };
