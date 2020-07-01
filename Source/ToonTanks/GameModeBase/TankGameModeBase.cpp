@@ -2,14 +2,13 @@
 
 
 #include "TankGameModeBase.h"
-#inlcude "ToonTanks/Pawns/PawnTank"
-#inlcude "ToonTanks/Pawns/PawnTurret"
+#include "ToonTanks/Pawns/PawnTank.h"
+#include "ToonTanks/Pawns/PawnTurret.h"
 #include "Kismet/GameplayStatics.h"
 
 void ATankGameModeBase::BeginPlay()
 {
-
-    TargetActors = GetTargetTurretCount();
+    TargetTurrets = GetTargetTurretCount();
 
     PlayerTank = Cast<APawnTank>(UGameplayStatics::GetPlayerPawn(this, 0));
 
@@ -36,7 +35,7 @@ void ATankGameModeBase::ActorDied(AActor *DeadActor)
     }
     else if(APawnTurret* DestroyedTurret = Cast<APawnTurret>(DeadActor))
     {
-        DestroyedTurre->PawnDestroyed();
+        DestroyedTurret->PawnDestroyed();
 
         TargetTurrets--;
 
@@ -55,5 +54,5 @@ void ATankGameModeBase::HandleGameStart()
 
 void ATankGameModeBase::HandleGameOver(bool PlayerWon)
 {
-    GameOver();
+    GameOver(PlayerWon);
 }

@@ -27,13 +27,15 @@ protected:
 private:
 
 	int32 TargetTurrets = 0;
-	
 	int32 GetTargetTurretCount();
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Player", meta = (AllowPrivateAccess = "true"))
     APawnTank* PlayerTank;
 
-    void HandleGameStart();
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Game Loop", meta = (AllowPrivateAccess = "true"))
+	int StartDelay = 3;
+
+	void HandleGameStart();
 	void HandleGameOver(bool PlayerWon);
 
 
