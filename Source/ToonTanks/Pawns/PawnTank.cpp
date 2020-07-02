@@ -7,6 +7,7 @@
 
 APawnTank::APawnTank()
 {
+    PrimaryActorTick.bCanEverTick = true;
     SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("Spring Arm"));
     SpringArm->SetupAttachment(RootComponent);
 
@@ -74,4 +75,14 @@ void APawnTank::Rotate()
 void APawnTank::HandleDestruction()
 {
     Super::HandleDestruction();
+
+    bAlive = false;
+
+    SetActorHiddenInGame(true);
+    SetActorTickEnabled(false);
+}
+
+bool APawnTank::GetPlayerAlive()
+{
+    return bAlive;
 }

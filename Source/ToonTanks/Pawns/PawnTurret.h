@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "PawnBase.h"
+#include "ToonTanks/Pawns/PawnBase.h"
 #include "PawnTurret.generated.h"
 
 class APawnTank;
@@ -36,6 +37,5 @@ protected:
 
 	virtual void BeginPlay() override;
 
-	virtual void HandleDestruction();
-
+	virtual void HandleDestruction() override;
 };
