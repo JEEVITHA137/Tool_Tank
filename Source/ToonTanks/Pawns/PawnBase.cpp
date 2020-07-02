@@ -55,6 +55,14 @@ void APawnBase::HandleDestruction()
 	{
 		UGameplayStatics::SpawnEmitterAtLocation(this,DeathParticle,GetActorLocation(),FRotator::ZeroRotator);
 	}
+	if(DeathSound)
+	{
+			UGameplayStatics::PlaySoundAtLocation(this,DeathSound,GetActorLocation());
+	}	
+	if(DeathShake)
+	{
+			GetWorld()->GetFirstPlayerController()->PlayerCameraManager->PlayCameraShake(DeathShake,1);
+	}
 }
 
 void APawnBase::PawnDestroyed()

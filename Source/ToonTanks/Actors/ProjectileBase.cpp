@@ -32,6 +32,11 @@ AProjectileBase::AProjectileBase()
 void AProjectileBase::BeginPlay()
 {
 	Super::BeginPlay();
+
+	if(LaunchSpeed)
+	{
+		UGameplayStatics::PlaySoundAtLocation(this,LaunchSpeed,GetActorLocation());
+	}
 	
 }
 
@@ -50,6 +55,14 @@ void AProjectileBase::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UP
 		if(HitParticle)
 		{
 			UGameplayStatics::SpawnEmitterAtLocation(this, HitParticle, GetActorLocation(), FRotator::ZeroRotator);
+		}
+		if(HitSound)
+		{
+			UGameplayStatics::PlaySoundAtLocation(this,HitSound,GetActorLocation());
+		}
+		if(HitShake)
+		{
+			GetWorld()->GetFirstPlayerController()->PlayerCameraManager->PlayCameraShake(HitShake,1);
 		}
 		Destroy();
 	}
