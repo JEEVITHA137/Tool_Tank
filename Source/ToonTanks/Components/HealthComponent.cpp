@@ -40,9 +40,9 @@ void UHealthComponent::TankDamage(AActor* DamagedActor, float Damage, const clas
 	{
 		return;
 	}
-
+	UE_LOG(LogTemp, Warning, TEXT("%f"), Health);
 	Health = FMath::Clamp(Health - Damage, 0.0f, DefaultHealth);
-	UE_LOG(LogTemp,Warning,TEXT("%f"),Health);
+
 
 	if(Health <= 0 )
 	{
