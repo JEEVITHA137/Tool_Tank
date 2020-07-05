@@ -11,7 +11,7 @@ void ATankGameModeBase::BeginPlay()
 {
     TargetTurrets = GetTargetTurretCount();
 
-    PlayerTank = Cast<APawnTank>(UGameplayStatics::GetPlayerPawn(this, 0));
+
 
     PlayerControllerRef = Cast<APlayerControllerBase>(UGameplayStatics::GetPlayerController(this,0));
 
@@ -65,11 +65,16 @@ void ATankGameModeBase::HandleGameStart()
 
         FTimerHandle PlayerEnableHandle;
         FTimerDelegate PlayerEnableDelegate = FTimerDelegate::CreateUObject(PlayerControllerRef, &APlayerControllerBase::SetPlayerEnabled, true);
-        GetWorldTimerManager().SetTimer(PlayerEnableHandle, PlayerEnableDelegate, StartDelay, false);
+        GetWorldTimerManager().SetTimer(PlayerEnableHandle, PlayerEnableDelegate, StartDelay-1, false);
     }
 }
 
 void ATankGameModeBase::HandleGameOver(bool PlayerWon)
 {
     GameOver(PlayerWon);
+}
+
+void ATankGameModeBase::HandleScore(int score)
+{
+    Score(score);
 }

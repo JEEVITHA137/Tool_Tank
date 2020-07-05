@@ -21,6 +21,8 @@ public:
 	void GameStart();
 	UFUNCTION(BlueprintImplementableEvent)
 	void GameOver(bool PlayerWon);
+	UFUNCTION(BlueprintImplementableEvent)
+	void Score(int score);
 
 protected:
     virtual void BeginPlay() override;
@@ -40,7 +42,6 @@ private:
 	int32 GetTargetTurretCount();
 	void HandleGameStart();
 	void HandleGameOver(bool PlayerWon);
+	void HandleScore(int score);
 
-
-	
 };
