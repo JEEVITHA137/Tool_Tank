@@ -43,9 +43,13 @@ void UHealthComponent::TankDamage(AActor* DamagedActor, float Damage, const clas
 
 
 	Health = FMath::Clamp(Health - Damage, 0.0f, DefaultHealth);
-		Lives--;
-		GameModeRef->Score(Lives);
-		UE_LOG(LogTemp, Warning, TEXT("%f"), Lives);
+	UE_LOG(LogTemp,Warning,TEXT("%f"),Health);
+
+	if(GameModeRef)
+	{
+		GameModeRef->Score(Owner);
+	}
+	
 	if(Health <= 0 )
 	{
 		if(GameModeRef)

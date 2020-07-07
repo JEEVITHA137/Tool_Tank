@@ -16,13 +16,14 @@ class TOONTANKS_API ATankGameModeBase : public AGameModeBase
 	GENERATED_BODY()
 
 public:
-    void ActorDied(AActor* DeadActor);
+	void Score(AActor* HitActor);
+	void ActorDied(AActor* DeadActor);
 	UFUNCTION(BlueprintImplementableEvent)
 	void GameStart();
 	UFUNCTION(BlueprintImplementableEvent)
 	void GameOver(bool PlayerWon);
 	UFUNCTION(BlueprintImplementableEvent)
-	void Score(int score);
+	void Score();
 
 protected:
     virtual void BeginPlay() override;
@@ -39,9 +40,10 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Game Loop", meta = (AllowPrivateAccess = "true"))
 	int StartDelay = 3;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Game Loop", meta = (AllowPrivateAccess = "true"))
+	int UpdateScore=0;
+
 	int32 GetTargetTurretCount();
 	void HandleGameStart();
 	void HandleGameOver(bool PlayerWon);
-	void HandleScore(int score);
-
 };

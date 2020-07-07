@@ -11,12 +11,11 @@ void ATankGameModeBase::BeginPlay()
 {
     TargetTurrets = GetTargetTurretCount();
 
-
+    PlayerTank = Cast<APawnTank>(UGameplayStatics::GetPlayerPawn(this, 0));
 
     PlayerControllerRef = Cast<APlayerControllerBase>(UGameplayStatics::GetPlayerController(this,0));
 
     HandleGameStart();
-
     Super::BeginPlay();
 }
 
@@ -54,7 +53,6 @@ void ATankGameModeBase::ActorDied(AActor *DeadActor)
     }
 }
 
-
 void ATankGameModeBase::HandleGameStart()
 {
     GameStart();
@@ -65,7 +63,7 @@ void ATankGameModeBase::HandleGameStart()
 
         FTimerHandle PlayerEnableHandle;
         FTimerDelegate PlayerEnableDelegate = FTimerDelegate::CreateUObject(PlayerControllerRef, &APlayerControllerBase::SetPlayerEnabled, true);
-        GetWorldTimerManager().SetTimer(PlayerEnableHandle, PlayerEnableDelegate, StartDelay-1, false);
+        GetWorldTimerManager().SetTimer(PlayerEnableHandle, PlayerEnableDelegate, StartDelay+1, false);
     }
 }
 
@@ -74,7 +72,15 @@ void ATankGameModeBase::HandleGameOver(bool PlayerWon)
     GameOver(PlayerWon);
 }
 
-void ATankGameModeBase::HandleScore(int score)
+void ATankGameModeBase::Score(AActor* HitActor)
 {
-    Score(score);
+    if (HitActor == PlayerTank)
+    {
+        UE_LOG(LogTemp,Warning,TEXT("LIVES -1"));
+    }
+    else
+    {
+        UpdateScore=UpdateScore+5;
+        Score();
+    }
 }
